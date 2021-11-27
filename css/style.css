@@ -1,0 +1,31 @@
+p{
+    margin: 0 !important;
+}
+.syncWithServer{
+    margin: 20px 0;
+    outline: none !important;
+    border: none;
+    background-color: brown;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+}
+ul{
+    margin: 0;
+    padding: 0;
+}
+li{
+    margin-top: 10px;
+    border-radius: 10px !important;
+    background-color: saddlebrown !important;
+    color: white;
+}
+.selfBtn{
+    margin-top: 40px;
+}
+.btnRemove{
+    margin-left: 5px;
+}
+body > div > div > div.page-sidebar{
+    overflow: hidden !important;
+}

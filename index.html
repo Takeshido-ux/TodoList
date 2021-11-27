@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/theme.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        
+          <div class="page has-sidebar">
+            <button class="syncWithServer">Синхронизировать с сервером</button>
+            <ul id="taskBox">
+                
+            </ul>
+            <div class="page-sidebar">
+              <div class="sidebar-section">
+                <button type="button" class="close mt-n1 d-none d-sm-block" onclick="Looper.toggleSidebar()" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h6> Введите задачу: </h6>
+                <input type="text" id="textInpt" class="form-control" placeholder="Ввод задачи:">
+                <div>
+                  <button type="button" id="addBtn" class="btn btn-primary selfBtn">Добавить</button>
+                  <button type="button" data-toggle="sidebar" class="btn btn-secondary selfBtn">Отмена</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <button type="button" data-toggle="sidebar" class="btn btn-success btn-floated"><span class="fa fa-plus"></span></button>
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/theme.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html

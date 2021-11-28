@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="container">
-        
+
           <div class="page has-sidebar">
             <button class="syncWithServer">Синхронизировать с сервером</button>
             <ul id="taskBox">
@@ -24,7 +24,7 @@
                 <h6> Введите задачу: </h6>
                 <input type="text" id="textInpt" class="form-control" placeholder="Ввод задачи:">
                 <div>
-                  <button type="button" id="addBtn" class="btn btn-primary selfBtn">Добавить</button>
+                  <button type="button" id="addBtn" data-toggle="sidebar" class="btn btn-primary selfBtn">Добавить</button>
                   <button type="button" data-toggle="sidebar" class="btn btn-secondary selfBtn">Отмена</button>
                 </div>
               </div>
@@ -32,7 +32,39 @@
           </div>
     </div>
     <button type="button" data-toggle="sidebar" class="btn btn-success btn-floated"><span class="fa fa-plus"></span></button>
-
+    <div class="modal fade" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel" aria-modal="true" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLiveLabel">Введите текст:</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span>X</span></button>
+          </div>
+          <div class="modal-body">
+            <input type="text" id="modalInpt" class="form-control" placeholder="Ввод задачи:">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btnChangeModalExit" data-bs-dismiss="modal">Отмена</button>
+            <button type="button" class="btn btn-primary btnChangeModal">Изменить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="exampleModalLiveDelete" tabindex="-1" aria-labelledby="exampleModalLiveLabel" aria-modal="true" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLiveLabel">Вы уверены ?</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span>X</span></button>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btnChangeModalExit" data-bs-dismiss="modal">Отмена</button>
+            <button type="button" class="btn btn-primary btnRemoveModal">Удалить</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
 

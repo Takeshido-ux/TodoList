@@ -1,4 +1,5 @@
-let id = 201;
+let id = 1;
+let idTask;
 $('#addBtn').click(function(){
     let textInpt = $('#textInpt').val();
     if ($('.syncWithServer').hasClass('on')){
@@ -17,55 +18,98 @@ $('#addBtn').click(function(){
         alert('Введите текст')
     }
     $('#textInpt').val('');
-    console.log(id);
     id = id + 1;
 })
 $('ul').on('click', '.btnRemove', function(){
-    let delText = confirm('Вы уверены ?');
-    let idTask = $(this).parents('li').attr('id');
+    $('#exampleModalLiveDelete').addClass('show');
+    $('#exampleModalLiveDelete').css({
+        "display":"block",
+    });
+    idTask = Number($(this).parents('li').attr('id'));
+})
+$('.btnRemoveModal').click(function(){
+    $('#exampleModalLiveDelete').removeClass('show');
+    $('#exampleModalLiveDelete').css({
+        "display":"none",
+    });
     let arr = `https://jsonplaceholder.typicode.com/todos/${idTask}`;
-    if(delText == false){
-        return;
-    }
-    else{
-        $(this).parents('li').remove();;
-    }
     if ($('.syncWithServer').hasClass('on')){
         $.ajax({
             url: arr,
             type: 'DELETE',
+            success: function(){
+                $('li')[idTask - 1].hidden = true;
+            }
         })
+    }
+    else{
+        $('li')[idTask - 1].hidden = true;
     }
 })
 
 $('ul').on('click', '.btnChange', function(){
-    let changeText = prompt('Введите текст:');
-    let idTask = $(this).parents('li').attr('id');
+    $('#exampleModalLive').addClass('show');
+    $('#exampleModalLive').css({
+        "display":"block",
+    });
+    idTask = Number($(this).parents('li').attr('id'));
+})
+$('.btnChangeModal').click(function(){
+    $('#exampleModalLive').removeClass('show');
+    $('#exampleModalLive').css({
+        "display":"none",
+    });
+    let modalInpt = $('#modalInpt').val();
     let arr = `https://jsonplaceholder.typicode.com/todos/${idTask}`;
-    if (changeText == null){
-        return;
-    }
-    else if (changeText === ''){
-        alert('Вы не ввели текст:');
-    }
-    else{
-        $(this).parents('li').find('p').text(changeText);
-    }
     if ($('.syncWithServer').hasClass('on')){
         $.ajax({
             url: arr,
             type: 'PUT',
             data:{
-                "title": changeText,
+                "title": modalInpt,
+            },
+            success: function(){
+                if (modalInpt == null){
+                    return;
+                }
+                else if (modalInpt === ''){
+                    alert('Вы не ввели текст:');
+                }
+                else{
+                    $('li')[idTask - 1].childNodes[0].innerHTML = modalInpt;
+                }
             }
         })
     }
+    else{
+        if (modalInpt == null){
+            return;
+        }
+        else if (modalInpt === ''){
+            alert('Вы не ввели текст:');
+        }
+        else{
+            $('li')[idTask - 1].childNodes[0].innerHTML = modalInpt;
+        }
+    }
+    $('#modalInpt').val('');
+})
+$('.btnChangeModalExit').click(function(){
+    $('#exampleModalLive').removeClass('show');
+    $('#exampleModalLive').css({
+        "display":"none",
+    });
+    $('#exampleModalLiveDelete').removeClass('show');
+    $('#exampleModalLiveDelete').css({
+        "display":"none",
+    });
 })
 
 
 
 
 $('.syncWithServer').click(function(){
+    $('li').remove();
     $.ajax({
         url: 'https://jsonplaceholder.typicode.com/todos/',
         type: 'GET',
@@ -77,6 +121,16 @@ $('.syncWithServer').click(function(){
             })
         }
     })
+})
+$('.btn-close').click(function(){
+    $('#exampleModalLive').removeClass('show');
+    $('#exampleModalLive').css({
+        "display":"none",
+    });
+    $('#exampleModalLiveDelete').removeClass('show');
+    $('#exampleModalLiveDelete').css({
+        "display":"none",
+    });
 })
 
     

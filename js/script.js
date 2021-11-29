@@ -12,7 +12,7 @@ $('#addBtn').click(function(){
         })
     }
     if (textInpt){
-        $('ul').append('<li id="'+ id +'" class="list-group-item task align-items-center justify-content-between"><p>'+ textInpt +'</p><div><button class="btn btn-sm btn-icon btn-secondary btnChange" type="button"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button class="btn btn-sm btn-icon btn-secondary btnRemove" type="button"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></button></div></li>')
+        $('ul').append('<li id="'+ id +'" class="list-group-item task align-items-center justify-content-between"><p>'+ textInpt +'</p><div><button class="btn btn-sm btn-icon btn-secondary btnChange" data-bs-toggle="modal" data-bs-target="#exampleModalLive" type="button"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button class="btn btn-sm btn-icon btn-secondary btnRemove" data-bs-toggle="modal" data-bs-target="#exampleModalLiveDelete" type="button"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></button></div></li>')
     }
     else{
         alert('Введите текст')
@@ -21,17 +21,9 @@ $('#addBtn').click(function(){
     id = id + 1;
 })
 $('ul').on('click', '.btnRemove', function(){
-    $('#exampleModalLiveDelete').addClass('show');
-    $('#exampleModalLiveDelete').css({
-        "display":"block",
-    });
     idTask = Number($(this).parents('li').attr('id'));
 })
 $('.btnRemoveModal').click(function(){
-    $('#exampleModalLiveDelete').removeClass('show');
-    $('#exampleModalLiveDelete').css({
-        "display":"none",
-    });
     let arr = `https://jsonplaceholder.typicode.com/todos/${idTask}`;
     if ($('.syncWithServer').hasClass('on')){
         $.ajax({
@@ -48,17 +40,11 @@ $('.btnRemoveModal').click(function(){
 })
 
 $('ul').on('click', '.btnChange', function(){
-    $('#exampleModalLive').addClass('show');
-    $('#exampleModalLive').css({
-        "display":"block",
-    });
     idTask = Number($(this).parents('li').attr('id'));
+    let staticVal = $('li')[idTask - 1].childNodes[0].innerHTML;
+    $('#modalInpt').val(staticVal);
 })
 $('.btnChangeModal').click(function(){
-    $('#exampleModalLive').removeClass('show');
-    $('#exampleModalLive').css({
-        "display":"none",
-    });
     let modalInpt = $('#modalInpt').val();
     let arr = `https://jsonplaceholder.typicode.com/todos/${idTask}`;
     if ($('.syncWithServer').hasClass('on')){
@@ -94,19 +80,6 @@ $('.btnChangeModal').click(function(){
     }
     $('#modalInpt').val('');
 })
-$('.btnChangeModalExit').click(function(){
-    $('#exampleModalLive').removeClass('show');
-    $('#exampleModalLive').css({
-        "display":"none",
-    });
-    $('#exampleModalLiveDelete').removeClass('show');
-    $('#exampleModalLiveDelete').css({
-        "display":"none",
-    });
-})
-
-
-
 
 $('.syncWithServer').click(function(){
     $('li').remove();
@@ -116,22 +89,13 @@ $('.syncWithServer').click(function(){
         success: function(data){
             data.length = data.length / 4;
             $.each( data , function(item){
-                $('ul').append('<li id="'+ data[item].id +'" class="list-group-item task align-items-center justify-content-between"><p>'+ data[item].title +'</p><div><button class="btn btn-sm btn-icon btn-secondary btnChange" type="button"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button class="btn btn-sm btn-icon btn-secondary btnRemove" type="button"><i class="fa fa-trash-alt"></i> <span class="sr-only">Remove</span></button></div></li>');
+                $('ul').append('<li id="'+ data[item].id +'" class="list-group-item task align-items-center justify-content-between"><p>'+ data[item].title +'</p><div><button class="btn btn-sm btn-icon btn-secondary btnChange" data-bs-toggle="modal" data-bs-target="#exampleModalLive" type="button"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></button><button class="btn btn-sm btn-icon btn-secondary btnRemove" data-bs-toggle="modal" data-bs-target="#exampleModalLiveDelete" type="button"><i class="fa fa-trash-alt"></i> <span class="sr-only">Remove</span></button></div></li>');
                 $('.syncWithServer').addClass('on');
             })
         }
     })
 })
-$('.btn-close').click(function(){
-    $('#exampleModalLive').removeClass('show');
-    $('#exampleModalLive').css({
-        "display":"none",
-    });
-    $('#exampleModalLiveDelete').removeClass('show');
-    $('#exampleModalLiveDelete').css({
-        "display":"none",
-    });
-})
+
 
     
 

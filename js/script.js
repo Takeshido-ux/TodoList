@@ -41,7 +41,7 @@ $('.btnRemoveModal').click(function(){
 
 $('ul').on('click', '.btnChange', function(){
     idTask = Number($(this).parents('li').attr('id'));
-    let staticVal = $('li')[idTask - 1].childNodes[0].innerHTML;
+    let staticVal = $('p')[idTask - 1].innerHTML;
     $('#modalInpt').val(staticVal);
 })
 $('.btnChangeModal').click(function(){
